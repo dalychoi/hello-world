@@ -1,38 +1,21 @@
 package com.dalychoi.hello_world;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.springframework.web.client.RestTemplate;
 
-/**
- * Unit test for simple App.
- */
+import org.junit.Test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+
 public class AppTest 
-    extends TestCase
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+    private RestTemplate restTemplate = new RestTemplate();
+	private Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
+	@Test
+	public void testApp()
     {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    	assertThat(quote.getValue(), is(notNullValue()));
     }
 }
