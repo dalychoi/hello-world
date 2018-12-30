@@ -3,3 +3,4 @@
 - hamcrest test
 - checkout 'test' branch
 - new change
+- another branch 'test2'
