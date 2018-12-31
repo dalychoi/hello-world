@@ -20,6 +20,7 @@ public class App
 		System.out.println(quote.toString());
 		
 		// get json array
+	    //RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<List<Post>> response = restTemplate.exchange(
 			"https://jsonplaceholder.typicode.com/posts?userId=1",
 			HttpMethod.GET,
@@ -27,7 +28,6 @@ public class App
 			new ParameterizedTypeReference<List<Post>>() {}
 		);
 		List<Post> posts = response.getBody();
-		
 		System.out.println("Count of posts: " + posts.size());
 		for (Post post : posts) {
 			System.out.println(post.toString());
