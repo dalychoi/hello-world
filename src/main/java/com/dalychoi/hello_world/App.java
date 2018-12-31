@@ -20,7 +20,7 @@ public class App
 		System.out.println(quote.toString());
 		
 		// get json array
-	    //RestTemplate restTemplate = new RestTemplate();
+		//RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<List<Post>> response = restTemplate.exchange(
 			"https://jsonplaceholder.typicode.com/posts?userId=1",
 			HttpMethod.GET,
