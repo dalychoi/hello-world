@@ -15,6 +15,14 @@ public class App
 {
 	public static void main( String[] args )
 	{
+		System.setProperty("http.proxySet",  "true");
+		System.setProperty("http.proxyHost",  "www-proxy.jp.oracle.com");
+		System.setProperty("http.proxyPort",  "80");
+		//System.setProperty("https.proxySet",  "true"); // no proxySet for https
+		System.setProperty("https.proxyHost",  "www-proxy.jp.oracle.com");
+		System.setProperty("https.proxyPort",  "80"); // why not 443 here?
+		System.setProperty("http.nonProxyHosts",  "10.179.94.211|localhosts|127.0.0.1");
+		
 		RestTemplate restTemplate = new RestTemplate();
 		Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
 		System.out.println(quote.toString());
@@ -33,19 +41,19 @@ public class App
 			System.out.println(post.toString());
 		}
 		
-//		// get json array of type T nested in object
-//		//RestTemplate restTemplate = new RestTemplate();
-//		ResponseEntity<OrdsResponse<List<Customer>>> response2 = restTemplate.exchange(
-//			"http://10.179.94.211:8080/ords/soe2/cust/customers",
-//			HttpMethod.GET,
-//			null,
-//			new ParameterizedTypeReference<OrdsResponse<List<Customer>>>() {}
-//		);
-//		OrdsResponse<List<Customer>> ordsResponse = response2.getBody();
-//		List<Customer> customers = ordsResponse.getItems();
-//		System.out.println("Count of customers: " + customers.size());
-//		for (Customer customer : customers) {
-//			System.out.println(customer.toString());
-//		}
+		// get json array of type T nested in object
+		//RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<OrdsResponse<List<Customer>>> response2 = restTemplate.exchange(
+			"http://10.179.94.211:8080/ords/soe2/cust/customers",
+			HttpMethod.GET,
+			null,
+			new ParameterizedTypeReference<OrdsResponse<List<Customer>>>() {}
+		);
+		OrdsResponse<List<Customer>> ordsResponse = response2.getBody();
+		List<Customer> customers = ordsResponse.getItems();
+		System.out.println("Count of customers: " + customers.size());
+		for (Customer customer : customers) {
+			System.out.println(customer.toString());
+		}
 	}
 }
