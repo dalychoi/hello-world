@@ -20,13 +20,11 @@ public class AppTest
 	@Before
 	public void setProxy()
 	{
-		System.setProperty("http.proxySet",  "true");
 		System.setProperty("http.proxyHost",  "www-proxy.jp.oracle.com");
 		System.setProperty("http.proxyPort",  "80");
-		//System.setProperty("https.proxySet",  "true"); // no proxySet for https
 		System.setProperty("https.proxyHost",  "www-proxy.jp.oracle.com");
-		System.setProperty("https.proxyPort",  "80"); // why not 443 here?
-		System.setProperty("http.nonProxyHosts",  "10.179.94.211|localhosts|127.0.0.1");
+		System.setProperty("https.proxyPort",  "80");
+		System.setProperty("http.nonProxyHosts",  "10.179.*|localhost|127.0.0.1");
 	}
 	
 	@Test
